@@ -1,0 +1,294 @@
+
+<style>
+    .inline{display:inline-block; width: 17rem; vertical-align: top;}
+    label{color:rgb(161, 161, 161); margin-right: 0%; font-size:1.2rem; }
+    #inline{display:inline-block; vertical-align: top; width: 20%}
+    hr{ width: 40rem;}
+</style>
+
+<h4><img [src]="fullImagePath"></h4>
+<h3 style="font-family: 'Roboto Mono', monospace;">Chatty_Cat</h3>
+<hr>
+
+  <form id="inline"(submit)='register(); registerForm.reset()' #registerForm="ngForm">
+    
+
+
+    <div class="form-group">
+      <h4>Register</h4>
+      <label for="username">Username:</label>
+      <input type="text" 
+        class="form-control" 
+        name="username" 
+        required
+        minlength="2"
+        [(ngModel)]='user.username'
+        class="ng-untouched ng-pristine ng-invalid form-control"
+        #username="ngModel">
+        <p *ngIf="username.errors && username.invalid && username.dirty" class="error">
+          username is required, must be at least 2 characters
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" 
+          class="form-control" 
+          name="firstName" 
+          required
+          minlength="2"
+          [(ngModel)]='user.firstName'
+          class="ng-untouched ng-pristine ng-invalid form-control"
+          #firstName="ngModel">
+          <p *ngIf="firstName.errors && firstName.invalid && firstName.dirty" class="error">
+            First Name is required, must be at least 2 characters
+          </p>
+      </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" 
+        class="form-control" 
+        name="lastName" 
+        required
+        minlength="2"
+        [(ngModel)]='user.lastName'
+        class="ng-untouched ng-pristine ng-invalid form-control"
+        #lastName="ngModel">
+        <p *ngIf="lastName.errors && lastName.invalid && lastName.dirty" class="error">
+          Last Name is required, must be at least 2 characters
+        </p>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" 
+        class="form-control" 
+        name="email" 
+        minlength="4"
+        required
+        [(ngModel)]='user.email'
+        class="ng-untouched ng-pristine ng-invalid form-control"
+        #email="ngModel">
+        <p *ngIf="email.errors && email.invalid && email.dirty" class="error">
+          Email is required, must be at least 4 characters
+        </p>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" 
+        class="form-control" 
+        name="password" 
+        required
+        minlength="8"
+        [(ngModel)]='user.password'
+        class="ng-untouched ng-pristine ng-invalid form-control"
+        #password="ngModel">
+        <p *ngIf="password.errors && password.invalid && password.dirty" class="error">
+            Password is required, must be at least 8 characters
+          </p>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" 
+        class="form-control" 
+        name="confirmPassword" 
+        required
+        minlength="8"
+        [(ngModel)]='user.confirmPassword'
+        class="ng-untouched ng-pristine ng-invalid form-control"
+        #confirmPassword="ngModel">
+        <p *ngIf="confirmPassword.errors && confirmPassword.invalid && confirmPassword.dirty" class="error">
+            Confirm Password must match password
+          </p>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+
+  
+  </form>
+
+      <!-- Login -->
+    
+      <div class="col-md-3 col-sm-3 inline" id="inline">
+        <form (submit)='login(); loginForm.reset()' #loginForm="ngForm">
+          <h4>Login</h4>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" 
+              class="form-control" 
+              required
+              name="emailForLogin" 
+              [(ngModel)]='loggingUser.emailForLogin'
+              class="ng-untouched ng-pristine ng-invalid form-control"
+              #emailForLogin="ngModel">
+              <p *ngIf="emailForLogin.errors && emailForLogin.invalid && emailForLogin.dirty" class="error">
+                  Email is required, must be at least 4 characters
+                </p>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" 
+              class="form-control" 
+              required
+              minlength="8"
+              name="passwordForLogin" 
+              [(ngModel)]='loggingUser.passwordForLogin'
+              class="ng-untouched ng-pristine ng-invalid form-control"
+              #passwordForLogin="ngModel">
+              <p *ngIf="passwordForLogin.errors && passwordForLogin.invalid && passwordForLogin.dirty" class="error">
+                  Password is required, must be at least 8 characters
+                </p>
+          </div>
+          <button type="submit" [disabled]="loginForm.invalid">Login</button>
+          
+        </form>
+        <br>
+        <br>
+        <div *ngIf="ErrorMessage.backToLogin">
+            <p class="error">*{{ErrorMessage.message}}</p>
+        </div>
+
+
+
+
+
+
+
+
+<!-- <h4><img [src]="fullImagePath"></h4>
+<hr>
+
+
+<span *ngIf="loggedList.length === 0">
+<fieldset class="inline" >
+<legend>Register</legend>
+<div style="text-align:center">
+
+  <h5 *ngIf="!valid && message == 'Something Happened. Please Try Again' " style = "color:red"> </h5>  
+</div>
+<div style="text-align:center">
+
+<form (submit)="register(); userForm.reset()" #userForm="ngForm"> 
+ First Name:<input 
+    type="text" 
+    name="username" 
+    required 
+    minlength="2" 
+    maxlength="24"
+    [(ngModel)]="user.username"
+    #username='ngModel'
+ />          
+ <div *ngIf='username.errors'>
+    <p *ngIf='!valid && username.errors.required && username.dirty'>first name is required</p>
+    <p *ngIf='!valid && username.errors.minlength && username.dirty'>first name must be at least 2 characters</p>
+    <p *ngIf='!valid && username.errors.maxlength && username.dirty'>first name must not exceed 24 characters</p>
+    
+</div>
+             
+                <BR>
+  Last Name:<input 
+    type="text" 
+    name="lastName" 
+    required 
+    minlength="2" 
+    maxlength="24"
+    [(ngModel)]="user.lastName"
+    #lastName='ngModel'
+  
+  />      
+  <div *ngIf='lastName.errors'>
+      <p *ngIf='!valid && lastName.errors.required && lastName.dirty'>Last name is required</p>
+      <p *ngIf='!valid && lastName.errors.minlength && lastName.dirty'>last name must be longer than 2 characters</p>
+      <p *ngIf='!valid && lastName.errors.maxlength && lastName.dirty'>last name must not exceed 24 characters</p>
+      
+  </div>  
+  <br>
+  Email:<input 
+  type="text" 
+  name="email" 
+  required 
+  minlength="4" 
+  
+  maxlength="24"
+  [(ngModel)]="user.email"
+  #email="ngModel"  
+    />   
+    <div *ngIf='email.errors'>
+        <p *ngIf='!valid && email.errors.required  && email.dirty'>Email is required</p>
+        <p *ngIf='!valid && email.errors.minlength && email.dirty'>email must have at least 7 chars and @</p>
+        
+    </div>
+    <br>
+  Password: <input 
+    type="password" 
+    name="password"
+    required 
+
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="user.password"
+    #password="ngModel"
+  /> <br><br>
+
+  <div *ngIf='password.errors'>
+      <p *ngIf='!valid && password.errors.required  && password.dirty'>Password is required</p>
+      <p *ngIf='!valid && password.errors.pattern && password.dirty'>Password must be  between 8-14 characters</p>
+  </div>
+
+Confirm Password: <input 
+  name="confirmPassword"
+  type="password"
+  pattern="^([a-zA-Z0-9@*#]{8,15})$"  
+  required
+  [(ngModel)]="user.confirmPassword"
+  #confirmPassword = "ngModel"
+/> <br><br>
+
+<div *ngIf='confirmPassword.errors'>
+    <p *ngIf='!valid && confirmPassword.errors.required  && confirmPassword.dirty'>Password is required</p>
+    <p *ngIf='user.confirmPassword !== user.password && confirmPassword.dirty'>Passwords must match</p>
+</div>
+
+
+<button [disabled]="!userForm.valid || user.confirmPassword !== user.password"  style="border:none;" *ngIf='!userForm.valid'>Make sure your fields are valid!</button>
+<button *ngIf='Form.valid && user.confirmPassword === user.password' type="submit" value="Register">Register</button>
+</form>
+</div>
+
+</fieldset >
+
+
+<fieldset class="inline">
+    <legend>Login</legend>
+    <form #logForm="ngForm" (submit)="login(); logForm.reset()">
+    Email: <input type="email"
+    name="emailForLogin"
+    required
+    minlength="4" 
+    [(ngModel)]="loggingUser.emailForLogin"
+    #emailForLogin="ngModel"  
+    > <br><br>
+    <div *ngIf='emailForLogin.errors'>
+        <p *ngIf='!valid && emailForLogin.errors.required  && emailForLogin.dirty'>Email is required</p>        
+        <p *ngIf='!valid && emailForLogin.errors.minlength && emailForLogin.dirty'>email must have at least 7 chars and @</p>
+  </div>
+
+    Password: <input type="password"
+    name="passwordForLogin" 
+    required
+    [(ngModel)]="loggingUser.passwordForLogin"
+    #passwordForLogin = "ngModel"
+    ><br><br>
+    <div *ngIf='passwordForLogin.errors'>
+        <p *ngIf='!valid && passwordForLogin.errors.required  && passwordForLogin.dirty'>Password is required</p>
+    </div>
+    <button [disabled]="!logForm.valid"  style="border:none;" *ngIf='!logForm.valid'>Make sure your fields are valid!</button>
+    <button *ngIf='logForm.valid' type="submit" value="Login">Login</button>
+</form>
+</fieldset >
+<div *ngIf="ErrorMessage.backToLogin">
+  <p class="error">*{{ErrorMessage.message}}</p>
+</div>
+
+</span> -->
+
+
+
+

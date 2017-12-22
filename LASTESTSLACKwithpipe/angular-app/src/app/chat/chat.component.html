@@ -1,0 +1,97 @@
+<style>
+.Padme{
+    margin: 0rem 4.5rem 0rem 0rem;
+    padding: 0rem 0rem 0rem 0rem;
+    width: 87.5%;
+    height: 5rem;
+}
+
+
+</style>
+
+
+<div class="Padme">
+
+
+    <div style="display: inline-block;width: 100%; padding-left: 15%; margin:0px; height: 5rem;margin-left:20rem;  margin: 0px; text-align:left; margin-top: 3%;">
+        <div style="display: inline-block;">
+        <h5>Current Channel</h5>
+        <span>MEM_ICON</span>
+        <span>TOPIC_ICON</span>
+        </div>
+        <button style="border:none; margin-left: 5%"(click)="openModal()"><u>Search Users</u></button>
+        <!-- <button style="border:none;"(click)="openModal2()"><u>Explore Channels</u></button> -->
+
+
+<hr>
+    
+       
+        <div style="margin-left: 40%; display: inline-block;">
+    
+                <div id="contactModal" class="modal">
+                        <div class="modal-content">
+                          <span class="close" (click)="closeModal()">&times;</span>
+                          <div id="wrapper">
+                                <label class="searchBar">Search 'Username'</label> <input type="text" id="search" name="searchBar" class="searchBar" [(ngModel)]="searchStr">
+                                <div class="users">
+                                  <div class="user"*ngFor="let user of userList | filter:searchStr; let idx = index">
+                                      <span><img style="width: 10%;"[src]="fullImagePath"> {{user.username}}</span>
+                                        <a (click)="addToChannel(user._id)">DM </a>
+                                        <a (click)="addToChannel(user._id)">Invite</a>
+
+                                  </div>
+
+
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                 </div>
+                 <div id="modalHide"></div>
+
+
+
+        <!-- <h1>USERS</h1>
+        <h5 *ngFor="let user of userList; let idx = index">
+            <span>Name: {{user._id}} </span><BR>
+           <span>Name: {{user.firstName}} </span><BR>
+            <span>Email: {{user.email}}</span><BR>
+        </h5> -->
+
+<!-- 
+<div *ngFor="let message of messages">
+    {{message.text}}
+  </div>
+  <BR>
+
+  <input style="height: 5rem;" type="text" [(ngModel)]="message.content"/>
+  <BR><button class="search" (click)="sendMessage()">Send</button>
+<BR> -->
+
+ 
+
+  <!-- NOTES NOTES NOTESNOTES NOTES NOTES NOTES NOTES NOTES-NOTES NOTES NOTESNOTES NOTES NOTES-->
+  <div style="margin-left: 10%">
+   <span>
+    *right now this is Emitting too a 'message' model that does not exist. TEST with message.... then make message part of a Channel<BR><BR>
+        *If 'Messages=[]''(we RETRIEVED through SERVICE)  == null, then have a <-app-inviteChannel-> component within this chat component space (a search  of existing channels... Channels should be a MODEL) <BR><BR>
+            *CHANNEL (ID, USERID, MESSAGELIST[Objects], Users[objects]) 
+            <span style="color: green">Lamda: Channels, and filter by Userid</span> <BR><BR>
+            *MESSAGE (ID, USERID, SENDERID, CHANNEL_ID[can be null if DM], DM_ID,CONTENT) <BR><BR>
+
+            *USER (ID,  CHANNEL[], DMS[], CONNECTIONS[]) <BR><BR>
+            *DMS (ID, USERID, MESSAGES[], DMS[], CONNECTIONS[])
+            <span style="color: green">Lamda: Find all Dms, and filter by Userid</span> <BR><BR> 
+
+                *CUrrent console erros from not having Model for message<BR><BR>
+
+                    *The NavBar Will loop through channel and then ROUTE to ID. That Particular Channel ID<BR><BR>
+
+   </span>
+</div>
+  <!-- NOTES NOTES NOTESNOTES NOTES NOTES NOTES NOTES NOTES-NOTES NOTES NOTESNOTES NOTES NOTES-->
+
+
+
+
+</div>  <!-- END of PADME-->
